@@ -22,7 +22,11 @@ sudo apt install openjdk-17-jdk -y
 
 git clone
 
+to find war:
 find target -type f -name "*.war"
+
+to find 
+
 
 nano Dockerfile -> keep contents in it
 
