@@ -28,7 +28,7 @@ find target -type f -name "*.war"
 to find 
 
 
-nano Dockerfile -> keep contents in it
+sudo nano Dockerfile -> keep contents in it
 
 FROM tomcat:9.0-jdk8
 
