@@ -41,6 +41,8 @@ EXPOSE 8080
 CMD ["catalina.sh", "run"]
 
 ----------------------------------------------------------------------
+package.name.ClassName
+
 
 FROM eclipse-temurin:17-jre
 
