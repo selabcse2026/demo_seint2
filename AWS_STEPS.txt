@@ -21,6 +21,9 @@ sudo apt install openjdk-17-jdk -y
 --------------------------
 
 git clone
+
+find target -type f -name "*.war"
+
 nano Dockerfile -> keep contents in it
 
 FROM tomcat:9.0-jdk8
@@ -49,5 +52,10 @@ mvn clean package
 sudo docker build -t oltrs-app .
 sudo docker run -d --name oltrs-container -p 8080:8080 oltrs-app
 sudo docker ps
+
+--------------------------------
+for jar file
+sudo docker logs java-container
+-------------------------------
 
 http://<EC2_PUBLIC_IP>:8080
