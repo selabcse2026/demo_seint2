@@ -51,7 +51,9 @@ WORKDIR /app
 COPY target/library-management-1.0-SNAPSHOT.jar app.jar
 
 CMD ["java", "-cp", "app.jar", "com.library.LibraryManagement"]
+find src/main/java -name "*.java"
 
+  
 ------------------------------------------------------------------------
 
 mvn clean package
