@@ -61,6 +61,7 @@ sudo docker build -t oltrs-app .
 sudo docker run -d --name oltrs-container -p 8080:8080 oltrs-app
 sudo docker ps
 
+sudo docker run -it --rm vehicle-app
 --------------------------------
 for jar file
 sudo docker logs java-container
