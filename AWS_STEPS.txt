@@ -70,3 +70,65 @@ sudo docker logs java-container
 http://<EC2_PUBLIC_IP>:8080
 https://github.com/anujyog1/carrepo.git  =>war
 https://github.com/haleema91/LAB-INTERNAL-II-OVR1.git =>jar file
+
+
+
+# 1. Update and install packages
+sudo apt update -y && sudo apt install -y git maven openjdk-17-jdk docker.io
+sudo systemctl start docker
+
+# 2. Configure Java 17 path
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+export PATH=$JAVA_HOME/bin:$PATH
+
+# 3. Clone and build JAR file
+git clone https://github.com/haleema91/LAB-INTERNAL-II-OVR1.git
+cd LAB-INTERNAL-II-OVR1
+mvn clean package
+
+# 4. Create Dockerfile
+cat << 'EOF' > Dockerfile
+FROM eclipse-temurin:17-jre
+WORKDIR /app
+COPY target/*.jar app.jar
+CMD ["java", "-cp", "app.jar", "KMIT.OVR_1.App"]
+EOF
+
+# 5. Build Docker image
+sudo docker build -t ovr-app .
+
+# 6. Run interactive application
+sudo docker run -it --rm ovr-app
+----------------------------------------------------------------------
+# 1. Update system and install required tools
+sudo apt update -y && sudo apt install -y git maven openjdk-17-jdk docker.io
+sudo systemctl start docker
+
+# 2. Configure Java 17 path (Prevents the compiler error)
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+export PATH=$JAVA_HOME/bin:$PATH
+
+# 3. Clone the WAR repository and enter folder
+git clone https://github.com/anujyog1/carrepo.git
+cd carrepo
+
+# 4. Package the project into a .war file
+mvn clean package
+
+# 5. Create the Tomcat Dockerfile
+cat << 'EOF' > Dockerfile
+FROM tomcat:9.0-jdk8
+RUN rm -rf /usr/local/tomcat/webapps/*
+COPY target/*.war /usr/local/tomcat/webapps/ROOT.war
+EXPOSE 8080
+CMD ["catalina.sh", "run"]
+EOF
+
+# 6. Build the Docker image
+sudo docker build -t car-web-app .
+
+# 7. Run the container on port 8080
+sudo docker run -d --name car-web -p 8080:8080 car-web-app
+
+# 8. Verify the container is running
+sudo docker psc
