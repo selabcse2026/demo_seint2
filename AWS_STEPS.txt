@@ -68,3 +68,5 @@ sudo docker logs java-container
 -------------------------------
 
 http://<EC2_PUBLIC_IP>:8080
+https://github.com/anujyog1/carrepo.git  =>war
+https://github.com/haleema91/LAB-INTERNAL-II-OVR1.git =>jar file
